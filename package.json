@@ -1,0 +1,19 @@
+{
+  "name": "profileforce",
+  "version": "1.0.0",
+  "description": "profileforce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sf-devs/profileforce.git"
+  },
+  "author": "Sumit Gupta (https://github.com/sgupta9591)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sf-devs/profileforce/issues"
+  },
+  "homepage": "https://github.com/sf-devs/profileforce#readme"
+}
