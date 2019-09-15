@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	    <title>Peopleforce</title>
+	    <title>Profileforce</title>
 	    <script>
 	    	window.onload = function(){
-	    		let pathname = (new URL(window.location.href)).pathname;
-	    		if(pathname.toLowerCase() === "/index.html"){
-	    			pathname = pathname.replace('/index.html','')
-	    			window.history.replaceState({}, document.title, "/");
-	    		}
-	    		document.getElementById("profileforce").src = "https://sf-devs-developer-edition.ap15.force.com/profileforce" + pathname; 
+	    		document.getElementById("profileforce").src = "https://sf-devs-developer-edition.ap15.force.com/profileforce" + location.pathname + location.search; 
 	    	}
 		</script>
 	</head>
