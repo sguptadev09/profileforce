@@ -4,11 +4,9 @@
 	    <title>Profileforce</title>
 	    <script>
 	    	window.onload = function(){
-	    		let h = window.innerHeight;
-  				let w = window.innerWidth;
   				let iframe = document.getElementsByTagName("iframe")[0];
-				iframe.style.height = h + "px";
-				iframe.style.width = w + "px";
+				iframe.style.height = window.innerHeight + "px";
+				iframe.style.width = window.innerWidth + "px";
 	    		iframe.src = "https://sf-devs-developer-edition.ap15.force.com/profileforce" + location.pathname + location.search; 
 	    	}
 		</script>
