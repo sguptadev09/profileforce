@@ -5,7 +5,7 @@
 	    <script>
 	    	window.onload = function(){
 	    		let url = new URL(window.location.href);
-	    		if(url.pathName.toLowerCase() === "index.html"){
+	    		if(url.pathname.toLowerCase() === "/index.html"){
 	    			window.history.replaceState({}, document.title, "/");
 	    		}
 	    	}
