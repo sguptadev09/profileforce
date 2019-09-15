@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	    <title>Profileforce</title>
+	    <title>Peopleforce</title>
 	    <script>
 	    	window.onload = function(){
 	    		let url = new URL(window.location.href);
 	    		if(url.pathname.toLowerCase() === "/index.html"){
 	    			window.history.replaceState({}, document.title, "/");
 	    		}
+	    		document.getElementById("peopleforce").src = "https://sf-devs-developer-edition.ap15.force.com/peopleforce" + url.pathname; 
 	    	}
 		</script>
 	</head>
 	<body style="margin:0;">
-  		<iframe src="https://sf-devs-developer-edition.ap15.force.com/profileforce" 
-  			style="height:100vh;width:100vw;overflow:visible;border:none;"/>
+  		<iframe id="peopleforce" src="" style="height:100vh;width:100vw;overflow:visible;border:none;"/>
   	</body> 
 </html>
