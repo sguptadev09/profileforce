@@ -4,11 +4,12 @@
 	    <title>Peopleforce</title>
 	    <script>
 	    	window.onload = function(){
-	    		let url = new URL(window.location.href);
-	    		if(url.pathname.toLowerCase() === "/index.html"){
+	    		let pathname = (new URL(window.location.href)).pathname;
+	    		if(pathname.toLowerCase() === "/index.html"){
+	    			pathname = pathname.replace('/index.html','/')
 	    			window.history.replaceState({}, document.title, "/");
 	    		}
-	    		document.getElementById("peopleforce").src = "https://sf-devs-developer-edition.ap15.force.com/peopleforce" + url.pathname; 
+	    		document.getElementById("peopleforce").src = "https://sf-devs-developer-edition.ap15.force.com/peopleforce" + pathname; 
 	    	}
 		</script>
 	</head>
