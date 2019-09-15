@@ -8,7 +8,7 @@
 	    	}
 		</script>
 	</head>
-	<body style="margin:0;">
-  		<iframe id="profileforce" src="" style="height:100vh;width:100vw;overflow:visible;border:none;"/>
-  	</body> 
+	<body style="margin:0px;padding:0px;overflow:hidden">
+	    <iframe id="profileforce" src="" frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
+	</body>
 </html>
