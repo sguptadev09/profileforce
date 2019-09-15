@@ -2,19 +2,17 @@
 <html>
 	<head>
 	    <title>Profileforce</title>
-	    <style>
-	    	body{
-	    		margin: 0;
+	    <script>
+	    	window.load = function(){
+	    		let url = new URL(window.location.href);
+	    		if(url.pathName.toLowerCase() === "index.html"){
+	    			window.history.replaceState({}, document.title, "/");
+	    		}
 	    	}
-	    	iframe{
-	    		height: 100vh;
-	    		width: 100vw;
-	    		overflow: visible;
-	    		border: none;
-	    	}
-		</style>
+		</script>
 	</head>
-	<body>
-  		<iframe src="https://sf-devs-developer-edition.ap15.force.com"/>
+	<body style="margin:0;">
+  		<iframe src="https://sf-devs-developer-edition.ap15.force.com/profileforce" 
+  			style="height:100vh;width:100vw;overflow:visible;border:none;"/>
   	</body> 
 </html>
