@@ -3,7 +3,7 @@
 	<head>
 	    <title>Profileforce</title>
 	    <script>
-	    	window.load = function(){
+	    	window.onload = function(){
 	    		let url = new URL(window.location.href);
 	    		if(url.pathName.toLowerCase() === "index.html"){
 	    			window.history.replaceState({}, document.title, "/");
