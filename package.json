@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/sf-devs/profileforce/issues"
   },
-  "homepage": "https://github.com/sf-devs/profileforce#readme",
-  "dependencies": {
-    "request": "^2.88.0"
-  }
+  "homepage": "https://github.com/sf-devs/profileforce#readme"
 }
