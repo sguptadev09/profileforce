@@ -6,7 +6,7 @@ function onRequest(client_req, client_res) {
     console.log('serve: ' + client_req.url);
 
     var options = {
-        hostname: 'https://sf-devs-developer-edition.ap15.force.com',
+        hostname: 'http://sf-devs-developer-edition.ap15.force.com',
         port: 80,
         path: client_req.url,
         method: client_req.method,
