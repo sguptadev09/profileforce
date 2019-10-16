@@ -1,14 +1,26 @@
-var http = require("http");
-var fs = require("fs");
-var url  = require("url");
+var http = require('http');
 
-const htmlData = fs.readFileSync("index.html", "utf8");
-const appUrl = "https://sf-devs-developer-edition.ap15.force.com";
+http.createServer(onRequest).listen(process.env.PORT || 8080);
 
-http.createServer(
-	function(request, response) {
-	  	response.writeHead(200, {"Content-Type": "text/html"});
-	  	response.write(htmlData.replace("{URL}", appUrl + url.parse(request.url).pathname));
-	  	response.end();
-	}
-).listen(process.env.PORT || 8080); 
+function onRequest(client_req, client_res) {
+    console.log('serve: ' + client_req.url);
+
+    var options = {
+        hostname: 'https://sf-devs-developer-edition.ap15.force.com',
+        port: 80,
+        path: client_req.url,
+        method: client_req.method,
+        headers: client_req.headers
+    };
+
+    var proxy = http.request(options, function (res) {
+        client_res.writeHead(res.statusCode, res.headers)
+        res.pipe(client_res, {
+            end: true
+        });
+    });
+
+    client_req.pipe(proxy, {
+        end: true
+    });
+}
