@@ -1,4 +1,14 @@
-var httpProxy = require('http-proxy');
+const http = require("http");
+const url = require("url");
+const request = require("request");
 
-httpProxy.createProxyServer({target:'https://sf-devs-developer-edition.ap15.force.com'})
-.listen(process.env.PORT || 8080);
+const location = "http://sf-devs-developer-edition.ap15.force.com/";
+
+http.createServer(function(req, res) {
+	var pathname = url.parse(req.url).pathname;
+  	request.get(location + pathname, function(err, response, body) {
+	    if (err) body = err; 
+	    res.write(body);
+	    res.end();
+  	});
+}).listen(process.env.PORT || 8000);
