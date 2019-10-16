@@ -1,7 +1,7 @@
 var http = require("http");
 var url = require("url");
 
-function handleRequest(){
+function handleRequest(req, res){
 	var pathname = url.parse(req.url).pathname;
   	res.writeHead({ Location: process.env.APP_URL + pathname });
   	res.end();
