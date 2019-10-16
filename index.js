@@ -3,7 +3,7 @@ var url = require("url");
 
 function handleRequest(req, res){
 	var pathname = url.parse(req.url).pathname;
-  	res.writeHead({ Location: process.env.APP_URL + pathname });
+  	res.writeHead(301, { Location: process.env.APP_URL + pathname });
   	res.end();
 }
 
