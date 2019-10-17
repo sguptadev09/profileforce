@@ -6,7 +6,7 @@ var url = require('url');
 
 proxyServer = proxy.createProxyServer({ target: process.env.APP_URL });
 
-//proxyServer.listen(8000);
+proxyServer.listen(process.env.PORT);
 
 server = http.createServer(function (req, res) {
 
@@ -22,4 +22,4 @@ server = http.createServer(function (req, res) {
 
 });
 
-server.listen(process.env.PORT || 8080);
+//server.listen(process.env.PORT || 8080);
