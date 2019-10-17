@@ -1,7 +1,7 @@
 var fs = require('fs');
 var http = require('http');
 
-http.createServer(options, onRequest).listen(process.env.PORT || 8080);
+http.createServer(onRequest).listen(process.env.PORT || 8080);
 
 function onRequest(client_req, client_res) {
     console.log('serve: ' + client_req.url);
