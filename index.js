@@ -4,7 +4,7 @@ var proxy = require('http-proxy');
 
 var url = require('url');
 
-proxyServer = proxy.createProxyServer({ target: process.env.APP_URL });
+proxyServer = proxy.createProxyServer({ target: process.env.APP_URL + ':80' });
 
 //proxyServer.listen(process.env.PORT);
 
