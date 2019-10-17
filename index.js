@@ -1,7 +1,14 @@
+var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
-http.createServer(onRequest).listen(process.env.PORT || 8080);
+var options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('key-cert.pem')
+};
+
+
+https.createServer(options, onRequest).listen(process.env.PORT || 8080);
 
 function onRequest(client_req, client_res) {
     console.log('serve: ' + client_req.url);
