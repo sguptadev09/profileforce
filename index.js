@@ -1,10 +1,14 @@
-var http = require("http");
-var url = require("url");
+const http = require("http");
+const url = require("url");
+const request = require("request");
 
-function handleRequest(req, res){
+//const location = "http://sf-devs-developer-edition.ap15.force.com/";
+
+http.createServer(function(req, res) {
 	var pathname = url.parse(req.url).pathname;
-  	res.writeHead(301, { Location: process.env.APP_URL + pathname });
-  	res.end();
-}
-
-http.createServer(handleRequest).listen(process.env.PORT || 8080);
+  	request.get(process.env.APP_URL + pathname, function(err, response, body) {
+	    if (err) body = err; 
+	    res.write(body);
+	    res.end();
+  	});
+}).listen(process.env.PORT || 8000);
