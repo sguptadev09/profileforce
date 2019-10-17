@@ -10,6 +10,8 @@ proxyServer = proxy.createProxyServer({ target: process.env.APP_URL });
 
 server = http.createServer(function (req, res) {
 
+	req.headers.host = 'hostname:80';
+
  console.log(req.url);
 
  proxyServer.web(req, res, { target: req.url });
