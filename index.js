@@ -1,14 +1,26 @@
-const http = require("http");
-const url = require("url");
-const request = require("request");
+var http = require('http');
 
-//const location = "http://sf-devs-developer-edition.ap15.force.com/";
+http.createServer(onRequest).listen(process.env.PORT || 8080);
 
-http.createServer(function(req, res) {
-	var pathname = url.parse(req.url).pathname;
-  	request.get(process.env.APP_URL + pathname, function(err, response, body) {
-	    if (err) body = err; 
-	    res.write(body);
-	    res.end();
-  	});
-}).listen(process.env.PORT || 8000);
+function onRequest(client_req, client_res) {
+    console.log('serve: ' + client_req.url);
+
+    var options = {
+        hostname: process.env.APP_URL || 'http://sf-devs-developer-edition.ap15.force.com',
+        port: 80,
+        path: client_req.url,
+        method: client_req.method,
+        headers: client_req.headers
+    };
+
+    var proxy = http.request(options, function (res) {
+        client_res.writeHead(res.statusCode, res.headers)
+        res.pipe(client_res, {
+            end: true
+        });
+    });
+
+    client_req.pipe(proxy, {
+        end: true
+    });
+}
