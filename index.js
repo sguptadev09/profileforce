@@ -8,7 +8,7 @@ function onRequest(client_req, client_res) {
 
     var options = {
         hostname: process.env.APP_URL || 'http://sf-devs-developer-edition.ap15.force.com',
-        port: 443,
+        port: 80,
         path: client_req.url,
         method: client_req.method,
         headers: client_req.headers
