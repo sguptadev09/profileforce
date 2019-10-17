@@ -1,25 +1,26 @@
 var http = require('http');
 
-var proxy = require('http-proxy');
+http.createServer(onRequest).listen(process.env.PORT || 8080);
 
-var url = require('url');
+function onRequest(client_req, client_res) {
+    console.log('serve: ' + client_req.url);
 
-proxyServer = proxy.createProxyServer({target: process.env.APP_URL || "https://sf-devs-developer-edition.ap15.force.com"});
+    var options = {
+        hostname: process.env.APP_URL || 'http://sf-devs-developer-edition.ap15.force.com',
+        port: 80,
+        path: client_req.url,
+        method: client_req.method,
+        headers: client_req.headers
+    };
 
-//proxyServer.listen(8000);
+    var proxy = http.request(options, function (res) {
+        client_res.writeHead(res.statusCode, res.headers)
+        res.pipe(client_res, {
+            end: true
+        });
+    });
 
-server = http.createServer(function (req, res) {
-
- console.log(req.url);
-
- proxyServer.web(req, res, { target: req.url });
-
- proxyServer.on('error', function(e) {
-
-  console.log("Error in proxy call", e);
-
- });
-
-});
-
-server.listen(process.env.PORT || 8080);
+    client_req.pipe(proxy, {
+        end: true
+    });
+}
