@@ -1,25 +1,16 @@
-const express = require('express');
-const app     = express();
 const fetch   = require('node-fetch');
- 
-app.get('/', function (req, res) {
-	res.type('html');
+const express = require('express');
+const url  = require("url");
 
-    var url = process.env.APP_URL || 'https://sf-devs-developer-edition.ap15.force.com';
-     
-    fetch(url)
-    .then(res => res.text())
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.send(err);
-    });
+const app = express();
+
+app.all('*', function(req, res){
+	var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
+    fetch(appUrl).then(res => res.text()).then(data => res.send(data));
 });
  
-const server = app.listen(process.env.PORT || 8080, function () {
+const server = app.listen(process.env.PORT, function () {
     const host = server.address().address;
     const port = server.address().port;
-    
     console.log("App listening at http://%s:%s", host, port);
 });
