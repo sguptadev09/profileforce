@@ -20,7 +20,7 @@ app.all('*', function(req, res, next){
 	    .then(data => res.send(data))
 	    .then(next)
 	    .catch(err => {
-	    	console.log(err);
+	    	console.error(JSON.stringify(err));
 	    	next();
 	    })
 	}
