@@ -10,6 +10,15 @@ process.env.PORT = 8080;*/
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization,X-Authorization'); 
+	res.setHeader('Access-Control-Allow-Methods', '*');
+	res.setHeader('Access-Control-Expose-Headers', 'X-Api-Version, X-Request-Id, X-Response-Time');
+	res.setHeader('Access-Control-Max-Age', '1000');  
+	next();
+});
+
 app.all('*', function(req, res, next){
 	if (req.url.startsWith('/_slds')) {
 		next();
@@ -29,5 +38,5 @@ app.all('*', function(req, res, next){
 const server = app.listen(process.env.PORT, function () {
     const host = server.address().address;
     const port = server.address().port;
-    console.log("App listening at http://%s:%s", host, port);
+    console.log("App listening at http://", host, port);
 });
