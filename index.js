@@ -11,15 +11,15 @@ process.env.PORT = 8080;*/
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.all('*', function(req, res, next){
-	console.log(req.url, req.url.startsWith('/_slds'));
 	if (req.url.startsWith('/_slds')) {
-		return next();
+		next();
+	} else {
+		var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
+	    fetch(appUrl)
+	    .then(res => res.text())
+	    .then(data => res.send(data))
+	    .then(next);
 	}
-	var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
-    fetch(appUrl)
-    .then(res => res.text())
-    .then(data => res.send(data))
-    .then(next);
 });
  
 const server = app.listen(process.env.PORT, function () {
