@@ -15,8 +15,10 @@ app.all('*', function(req, res, next){
 		return next();
 	}
 	var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
-    fetch(appUrl).then(res => res.text()).then(data => res.send(data));
-    next();
+    fetch(appUrl)
+    .then(res => res.text())
+    .then(data => res.send(data))
+    .then(next);
 });
  
 const server = app.listen(process.env.PORT, function () {
