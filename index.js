@@ -18,7 +18,8 @@ app.all('*', function(req, res, next){
 	    fetch(appUrl)
 	    .then(res => res.text())
 	    .then(data => res.send(data))
-	    .then(next);
+	    .then(next)
+	    .catch(err => console.log(err))
 	}
 });
  
