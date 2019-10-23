@@ -5,7 +5,12 @@ const url  = require("url");
 
 const app = express();
 
-app.use('/_slds', express.static(path.join(__dirname, 'public')))
+process.env.APP_URL = 'http://sf-devs-developer-edition.ap15.force.com';
+process.env.PORT = 8080;
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/_slds', function(){});
 
 app.all('*', function(req, res){
 	var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
