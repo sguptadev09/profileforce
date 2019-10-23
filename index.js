@@ -8,10 +8,10 @@ const app = express();
 /*process.env.APP_URL = 'http://sf-devs-developer-edition.ap15.force.com';
 process.env.PORT = 8080;*/
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/resource/*/SLDS', express.static(path.join(__dirname, 'public/slds')));
 
 app.all('*', function(req, res, next){
-	if (req.url.startsWith('/_slds')) {
+	if (req.url.includes('SLDS')) {
 		next();
 	} else {
 		var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
