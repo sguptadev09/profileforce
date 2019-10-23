@@ -1,10 +1,20 @@
-var express = require('express');  
-var app     = express(); 
-var request = require('request');
-  
-app.get('/', function(req, res) {  
+const express = require('express');
+const app     = express();
+const fetch   = require('node-fetch');
+ 
+app.get('/', function (req, res) {
+	res.type('html');
+
     var url = process.env.APP_URL || 'https://sf-devs-developer-edition.ap15.force.com';
-    req.pipe(request(url)).pipe(res);
+     
+    fetch(url)
+    .then(res => res.text())
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.send(err);
+    });
 });
  
 const server = app.listen(process.env.PORT || 8080, function () {

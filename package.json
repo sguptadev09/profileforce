@@ -19,8 +19,7 @@
   "homepage": "https://github.com/sf-devs/profileforce#readme",
   "dependencies": {
     "express": "^4.17.1",
-    // "express-http-proxy": "^1.6.0",
-    // "http-proxy": "^1.18.0",
+    "node-fetch": "^2.6.0",
     "request": "^2.88.0"
   }
 }
