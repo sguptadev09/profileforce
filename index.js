@@ -5,16 +5,18 @@ const url  = require("url");
 
 const app = express();
 
-process.env.APP_URL = 'http://sf-devs-developer-edition.ap15.force.com';
-process.env.PORT = 8080;
+/*process.env.APP_URL = 'http://sf-devs-developer-edition.ap15.force.com';
+process.env.PORT = 8080;*/
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/_slds', express.static(path.join(__dirname, 'public')));
 
-app.get('/_slds', function(){});
-
-app.all('*', function(req, res){
+app.all('*', function(req, res, next){
+	if (req.url === '/_slds') {
+		return next();
+	}
 	var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
     fetch(appUrl).then(res => res.text()).then(data => res.send(data));
+    next();
 });
  
 const server = app.listen(process.env.PORT, function () {
