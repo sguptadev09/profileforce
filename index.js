@@ -19,7 +19,10 @@ app.all('*', function(req, res, next){
 	    .then(res => res.text())
 	    .then(data => res.send(data))
 	    .then(next)
-	    .catch(err => console.log(err))
+	    .catch(err => {
+	    	console.log(err);
+	    	next();
+	    })
 	}
 });
  
