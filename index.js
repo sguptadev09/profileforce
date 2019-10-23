@@ -1,8 +1,11 @@
 const fetch   = require('node-fetch');
 const express = require('express');
+const path  = require("path");
 const url  = require("url");
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.all('*', function(req, res){
 	var appUrl = process.env.APP_URL + url.parse(req.url).pathname;
