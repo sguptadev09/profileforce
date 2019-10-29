@@ -17,6 +17,8 @@ app.all('*', function(req, res, next){
 			res.type('text/javascript');
 		} else if(req.url.includes('.css')){
 			res.type('text/css');
+		} else if(req.url.includes('.svg')){
+			res.type('image/svg+xml');
 		}
     	res.send(data);
     })
